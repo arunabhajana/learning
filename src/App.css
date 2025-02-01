@@ -1,0 +1,17 @@
+.Header{
+  display: flex;
+  padding-right: 20px;
+  justify-content: end;
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+a{
+  margin-right: 30px;
+}
+
+.Content{
+  margin-top: 50px;
+}
