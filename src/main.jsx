@@ -2,15 +2,16 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import Greetings from './Greetings.jsx'
-import ProductInfo from './ProductInfo.jsx'
-import UserList from './UsersList.jsx'
+import Greetings from './components/Greetings.jsx'
+import Users from './components/Users.jsx'
+import ProductList from './components/ProductList.jsx'
+import Handle from './components/Functions.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Greetings />
-    <App />
-    <ProductInfo />
-    <UserList />
+    <Greetings name="Arun" />
+    <Users name="Arun" />
+    <ProductList name="Iphone" price={1000} rating={5} />
+    <Handle />
   </StrictMode>,
 )
