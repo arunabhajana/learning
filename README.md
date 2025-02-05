@@ -171,3 +171,57 @@ const App = () => {
   return <Button onClick={handleClick} />;
 };
 ```
+
+## 5. Children Props
+- ✅ The `children` prop is a **special prop** in React used to **render child elements** inside a component.  
+- ✅ Allows components to wrap and display **nested elements** inside them. 
+- ✅ The `children` prop enables a component to **wrap other elements**.  
+
+```jsx
+const Card = (props) => {
+  return <div className="card">{props.children}</div>;
+};
+
+const App = () => {
+  return (
+    <Card>
+      <h2>Title</h2>
+      <p>This is inside the Card component.</p>
+    </Card>
+  );
+};
+```
+
+## 6. Children Props With Conditional Rendering
+
+- ✅ Dynamically display diffrent UI components or content based on specific condition
+
+```jsx
+
+export const ValidPassword = () => {
+  return (
+    <div>Valid Password</div>
+  )
+}
+
+export const InvalidPassword = () => {
+    return (
+      <div>Invalid Password</div>
+    )
+  }
+
+
+export const Password = ({isValid}) => {
+
+    if(isValid){
+        return <ValidPassword />
+    }
+    return <InvalidPassword />
+};
+
+const App = () => {
+  return (
+    <Password isValid={true} />
+  )
+};
+```

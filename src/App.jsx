@@ -1,21 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Greetings from './components/Greetings.jsx'
+import Users from './components/Users.jsx'
+import ProductList from './components/ProductList.jsx'
+import Handle from './components/Functions.jsx'
+import Card from './components/Card.jsx'
+import Password from './components/Password.jsx'
+import Cart from './components/Cart.jsx'
+import Weather from './components/Weather'
 
-
-const Name = 'Arun';
-const multiply = (a,b) => { return a*b;}
-const specialClass = 'simple-class';
 const App = () => {
   return (
-    <div className='Content'>
-      <p>2+2 = {2+2}</p>
-      <p>Hi, {Name}</p>
-      <p>My Friends {["A", "B", "C"]}</p>
-      <p>2 * 3 = {multiply(2,3)}</p>
-      <p className = {specialClass}>This is a special class</p>
-    </div>
+    <>
+      <Greetings name="Arun" />
+      <Users name="Arun" />
+      <ProductList name="Iphone" price={1000} rating={5} />
+      <Handle />
+      <Card>
+        <h1>This Is A Card</h1>
+        <p>Content For Card 1</p>
+      </Card>
+      <Password isValid={true} />
+      <Cart />
+      <Weather temp={20} />
+    </>
   )
 }
 export default App;
