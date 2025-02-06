@@ -1,7 +1,8 @@
+import "../index.css"
 
 const Button = ({onClick}) => {
     return (
-        <button onClick={onClick}></button>
+        <button onClick={onClick}>Click Me!!!</button>
     )
 }
 

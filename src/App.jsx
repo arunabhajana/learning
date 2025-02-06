@@ -7,6 +7,7 @@ import Card from './components/Card.jsx'
 import Password from './components/Password.jsx'
 import Cart from './components/Cart.jsx'
 import Weather from './components/Weather'
+import UserStatus from './components/UserStatus.jsx'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Password isValid={true} />
       <Cart />
       <Weather temp={20} />
+      <UserStatus isLoggedin={true} isAdmin={true} />
     </>
   )
 }

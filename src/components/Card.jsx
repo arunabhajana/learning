@@ -1,8 +1,11 @@
-import React from 'react'
-
 const Card = ({ children }) => {
   return (
-    <div>{children}</div>
+    <div style={{
+       color: "white" ,
+       backgroundColor : "teal" ,
+       padding : "2rem" , 
+       display: "inline-block"
+      }}>{children}</div>
   )
 }
 

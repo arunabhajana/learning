@@ -225,3 +225,78 @@ const App = () => {
   )
 };
 ```
+# 🆒 Styling
+
+## 1. Inline Styling
+
+- Applied directly within the `style` attribute of an element.
+- Useful for quick styling without the need for external stylesheets.
+- Less reusable compared to other styling methods.
+
+
+```jsx
+const Card = ({ children }) => {
+  return (
+    <div style={{
+       color: "white" ,   // Text Color
+       backgroundColor : "teal" ,  // Background Color
+       padding : "2rem" ,        // Padding
+       display: "inline-block" // Display
+      }}>{children}</div>
+  )
+}
+
+export default Card;
+```
+## 2. Dynamic Styling
+
+- Uses JavaScript objects to store style properties.
+- Allows conditional styling based on props or state.
+- More readable and reusable than inline styling.
+
+``` jsx
+const styles = {
+    color : "white", 
+    backgroundColor : "crimson" , 
+    padding : "2rem"
+}
+
+const Greetings = (props) => {
+    return (
+        <div>
+            <p style={styles}>
+            Hello! Great To See You Here {props.name}
+            </p>
+        </div>
+    )
+}
+```
+
+## 3. External Styling
+
+- Uses an external CSS file for styling.
+- Keeps styles separate from component logic, improving maintainability.
+- Allows for easy global styling across multiple components.
+
+``` jsx
+import "../index.css"
+
+const Button = ({onClick}) => {
+    return (
+        <button onClick={onClick}>Click Me!!!</button>
+    )
+};
+```
+### index.css
+``` css
+button {
+    display: block;
+    color : white ;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+    border-width: 0px;
+    border: none;
+    border-radius: 4px;
+}
+```
