@@ -1,4 +1,3 @@
-
 const ProductList = ({name , price , rating}) => {
     return (
         <div>
