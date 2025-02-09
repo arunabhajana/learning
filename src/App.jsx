@@ -8,6 +8,11 @@ import Password from './components/Password.jsx'
 import Cart from './components/Cart.jsx'
 import Weather from './components/Weather'
 import UserStatus from './components/UserStatus.jsx'
+import Events from './components/Events.jsx'
+import Copy from './components/Copy.jsx'
+import State from './components/State.jsx'
+import Friends from './components/Friends.jsx'
+import Movie from './components/Movie.jsx'
 
 const App = () => {
   return (
@@ -24,6 +29,11 @@ const App = () => {
       <Cart />
       <Weather temp={20} />
       <UserStatus isLoggedin={true} isAdmin={true} />
+      <Events />
+      <Copy />
+      <State />
+      <Friends />
+      <Movie />
     </>
   )
 }

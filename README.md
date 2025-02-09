@@ -300,3 +300,159 @@ button {
     border-radius: 4px;
 }
 ```
+
+# 🌲 Events
+
+## 1. Onclick()
+
+- The onClick event triggers when an element is clicked.
+- It is commonly used for buttons, divs, or interactive elements.
+- In the example, clicking the button triggers an alert message.
+
+``` jsx
+const Events = () => {
+    return (
+        <div>
+            <button onClick={ () => alert('Button Clicked')}>Click Me</button>
+        </div>
+    )
+};
+
+export default Events;
+```
+
+## 2. Oncopy()
+
+- The onCopy event fires when the user copies text.
+- It helps in tracking when content is copied from a webpage.
+- In the example, copying the paragraph triggers an alert.
+
+``` jsx
+const copyHandler = () => {
+    alert('You Have Copied Some Text');
+}
+const Copy = () => {
+    return (
+        <p onCopy={ copyHandler }>Lorem ipsum dolor 
+        sit amet consectetur adipisicing elit. 
+        Commodi impedit minus vitae explicabo labore
+         nam laudantium nobis at quibusdam vero!</p>
+    )
+};
+
+export default Copy;
+```
+
+# 💨 State
+
+## Defination
+State is a way to store and manage data that can change 
+over time and affects how the component renders.
+we define state using useState Hook, which allows us  
+to set and initial value and provides a way to update the state.
+
+## useState()
+useState Hook allows us to track state in a functional component.
+State generally refers to data or properties that need to be
+tracking in an application.
+
+## Syntax
+
+``` jsx
+const [data , changeData] = useState() ;
+```
+
+data -> Intial Value <br/>
+changeData -> Change Value
+
+#### Example
+``` jsx
+import {useState} from "react";
+
+const State = () => {
+
+    const [count , setCount] = useState(0) ;
+
+    return <div>{count}</div>
+}
+export default State;
+```
+
+count --> variable <br/>
+setCount --> function
+
+## Note
+
+When value of the state changes the component is re-rendered
+
+### Example
+
+``` jsx
+import { useState } from "react";
+const State = () => {
+    const [count, setCount] = useState(0);
+    const increment = () => setCount(count + 1);
+    return (
+        <div>
+            <p>{count}</p>
+            <button onClick={ increment }>+</button>
+        </div>
+    )
+}
+export default State;
+```
+
+## useState() Using A Array
+
+#### Example
+
+``` jsx
+import { useState } from "react";
+const Friends = () => {
+    const [friendsli, setFriends] = useState(["Arun", "Aditya"]);
+    const addFriends = () => setFriends([...friendsli, "Souvik"]);
+    return (
+        <div>
+            {friendsli.map((f) => (
+                <li key={Math.random()}>{f}</li>
+            ))}
+            <button onClick={ addFriends }>Add Friends</button>
+        </div>
+    );
+};
+export default Friends;
+```
+##### Spread Operator
+The spread operator (...) allows you to expand elements from an iterable (like an array, object, or string) into a new array or object. It is useful for copying, merging, and modifying data structures without mutating them
+
+- In The Example Spread Operator Is Used : <br/>
+...friendsli → The spread operator (...) is used to copy all elements from friendsli into a new array.
+
+## useState() Using A Object
+
+#### Example
+
+``` jsx
+import { useState } from "react";
+const Movie = () => {
+    const [movies, setMovies] = useState({
+        title: 'Interstellar',
+        rating: 5
+    });
+    const updateRating = () => {
+        const copyMovie = {
+            ...movies,
+            rating: 3
+        }
+        setMovies(copyMovie);
+    }
+    return (
+        <div>
+            <h2>Title: {movies.title}</h2>
+            <h2>Rating: {movies.rating}</h2>
+            <button onClick={updateRating}>Update Rating</button>
+        </div>
+    );
+}
+export default Movie;
+```
