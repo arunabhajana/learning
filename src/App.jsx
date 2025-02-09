@@ -13,6 +13,8 @@ import Copy from './components/Copy.jsx'
 import State from './components/State.jsx'
 import Friends from './components/Friends.jsx'
 import Movie from './components/Movie.jsx'
+import MovieDB from './components/MovieDB.jsx'
+import Sharing from './components/Sharing.jsx'
 
 const App = () => {
   return (
@@ -34,6 +36,8 @@ const App = () => {
       <State />
       <Friends />
       <Movie />
+      <MovieDB />
+      <Sharing />
     </>
   )
 }
