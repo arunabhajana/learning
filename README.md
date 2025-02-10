@@ -229,9 +229,9 @@ const App = () => {
 
 ## 1. Inline Styling
 
-- Applied directly within the `style` attribute of an element.
-- Useful for quick styling without the need for external stylesheets.
-- Less reusable compared to other styling methods.
+- ✅ Applied directly within the `style` attribute of an element.
+- ✅ Useful for quick styling without the need for external stylesheets.
+- ✅ Less reusable compared to other styling methods.
 
 
 ```jsx
@@ -250,9 +250,9 @@ export default Card;
 ```
 ## 2. Dynamic Styling
 
-- Uses JavaScript objects to store style properties.
-- Allows conditional styling based on props or state.
-- More readable and reusable than inline styling.
+- ✅ Uses JavaScript objects to store style properties.
+- ✅ Allows conditional styling based on props or state.
+- ✅ More readable and reusable than inline styling.
 
 ``` jsx
 const styles = {
@@ -274,9 +274,9 @@ const Greetings = (props) => {
 
 ## 3. External Styling
 
-- Uses an external CSS file for styling.
-- Keeps styles separate from component logic, improving maintainability.
-- Allows for easy global styling across multiple components.
+- ✅ Uses an external CSS file for styling.
+- ✅ Keeps styles separate from component logic, improving maintainability.
+- ✅ Allows for easy global styling across multiple components.
 
 ``` jsx
 import "../index.css"
@@ -305,9 +305,9 @@ button {
 
 ## 1. Onclick()
 
-- The onClick event triggers when an element is clicked.
-- It is commonly used for buttons, divs, or interactive elements.
-- In the example, clicking the button triggers an alert message.
+- ✅ The onClick event triggers when an element is clicked.
+- ✅ It is commonly used for buttons, divs, or interactive elements.
+- ✅ In the example, clicking the button triggers an alert message.
 
 ``` jsx
 const Events = () => {
@@ -323,9 +323,9 @@ export default Events;
 
 ## 2. Oncopy()
 
-- The onCopy event fires when the user copies text.
-- It helps in tracking when content is copied from a webpage.
-- In the example, copying the paragraph triggers an alert.
+- ✅ The onCopy event fires when the user copies text.
+- ✅ It helps in tracking when content is copied from a webpage.
+- ✅ In the example, copying the paragraph triggers an alert.
 
 ``` jsx
 const copyHandler = () => {
