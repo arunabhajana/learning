@@ -6,7 +6,9 @@ const Counter = () => {
     const [count, setCount] = useState(0)
 
     const increment = () => setCount(count + 1);
+    const increment10 = () => setCount(count + 10);
     const decrement = () => setCount(count - 1);
+    const decrement10 = () => setCount(count - 10);
 
     return (
         <section className='Counter'>
@@ -17,7 +19,9 @@ const Counter = () => {
                 </div>
                 <div className='Buttons'>
                     <button onClick={increment} className='increment-btn'>+</button>
+                    <button onClick={increment10} className='increment10-btn'>+</button>
                     <button onClick={decrement} className='decrement-btn'>-</button>
+                    <button onClick={decrement10} className='decrement10-btn'>-</button>
                 </div>
             </div>
         </section>
