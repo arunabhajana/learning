@@ -16,9 +16,13 @@ import Movie from './components/Movie.jsx'
 import MovieDB from './components/MovieDB.jsx'
 import Sharing from './components/Sharing.jsx'
 
+const Header = () => <h1>Header</h1>;
+const Footer = () => <h2>Footer</h2>
+
 const App = () => {
   return (
     <>
+      <Header />
       <Greetings name="Arun" />
       <Users name="Arun" />
       <ProductList name="Iphone" price={1000} rating={5} />
@@ -38,6 +42,7 @@ const App = () => {
       <Movie />
       <MovieDB />
       <Sharing />
+      <Footer />
     </>
   )
 }
