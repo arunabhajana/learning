@@ -456,3 +456,56 @@ const Movie = () => {
 }
 export default Movie;
 ```
+## React Portal
+
+Portal is a feature that allows you to render a child component into a DOM node that exists outside the hierarchy of the parent component. This is useful for scenarios like modals , tooltips or dropdowns. Where you want to break out of the usual parent child structure and render in a diffrent part of the DOM.
+
+### Examples
+
+Parent Component
+```js
+import {useState} from 'react';
+import { Popup } from './Popup';
+
+const ClipboardCopy = () => {
+
+    const [inputValue, setInputValue] = useState('');
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(inputValue).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        })
+    }
+
+    return (
+        <div>
+            <input type='text' value={inputValue} onChange={e => setInputValue(e.target.value)}></input>
+            <button onClick={handleCopy}>Copy</button>
+            <Popup copied={copied} />
+        </div>
+    );
+}
+
+export default ClipboardCopy;
+```
+
+Child Component
+
+```js
+import React from 'react'
+
+export const Popup = ({ copied }) => {
+  return (
+    <section>
+        {copied && (
+            <div style={{
+                position: 'absolute',
+                bottom: '3rem'
+            }}>Copied To Clipboard</div>
+        )}
+    </section>
+  )
+}
+```

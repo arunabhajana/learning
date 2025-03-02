@@ -15,11 +15,13 @@ import Friends from './components/Friends.jsx'
 import Movie from './components/Movie.jsx'
 import MovieDB from './components/MovieDB.jsx'
 import Sharing from './components/Sharing.jsx'
-
-const Header = () => <h1>Header</h1>;
-const Footer = () => <h2>Footer</h2>
+import Todo from './components/Todo.jsx'
+import ClipboardCopy from './components/ClipboardCopy.jsx'
 
 const App = () => {
+
+  const Header = () => <div><h1>Header</h1></div>;
+  const Footer = () => <div><h1>Footer</h1></div>;
   return (
     <>
       <Header />
@@ -42,6 +44,8 @@ const App = () => {
       <Movie />
       <MovieDB />
       <Sharing />
+      <Todo />
+      <ClipboardCopy />
       <Footer />
     </>
   )
