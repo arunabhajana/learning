@@ -383,7 +383,8 @@ setCount --> function
 
 ## Note
 
-When value of the state changes the component is re-rendered
+- When value of the state changes the component is re-rendered .
+- useState Cant be used conditionally (Hooks must be called in exact same order in every component render).
 
 ### Example
 
@@ -509,3 +510,94 @@ export const Popup = ({ copied }) => {
   )
 }
 ```
+## React Hooks
+
+## useEffect() Hook
+
+useEffect Hook allows you to perform side effects in your components. some examples of side effects are
+fetching data , directly updating dom etc.
+
+### Syntax
+```js
+useEffect(() => {
+ do your magic
+});
+```
+
+## Note
+- Without Dependency Array useEffect will be called every single render.
+- Using useEffect with Conditional Statements
+
+### ❌❌ Not To Do
+```js
+if(value>0){
+  useEffect(() => {
+    console.log("call useEffect");
+    document.title = `Increment (${value})`;
+  });
+}
+```
+
+### ✅✅ To Do
+```js
+  useEffect(() => {
+    if(value>0){
+    console.log("call useEffect");
+    document.title = `Increment (${value})`;
+    }
+  });
+```
+
+**Use Conditional Statement Inside The useEffect Hook**
+
+- When Empty Dependency Array is specified useEffect will only render on initial render not every render.
+
+Example : 
+```js
+  useEffect(() => {
+    if(value>0){
+    console.log("call useEffect");
+    document.title = `Increment (${value})`;
+    }
+  },[  ]); // Empty Dependency Array.
+```
+
+- When a Value is Specified in Dependency array it will rerender only when the value mention changes.
+
+Example : 
+```js
+  useEffect(() => {
+    if(value>0){
+    console.log("call useEffect");
+    document.title = `Increment (${value})`;
+    }
+  },[value]); // Dependency Array With Value
+```
+## Example Of useEffect Hook
+
+1. Counter
+
+```js
+import { useState, useEffect } from "react";
+
+const Effect = () => {
+
+    const [value,setValue] = useState(0);
+
+    useEffect(() => {
+        console.log('Call useEffect');
+        document.title = `Increment ${value}`
+    })
+
+    return (
+        <div>
+            <h2>{value}</h2>
+            <button onClick={() => setValue(value + 1)}>Click Me</button>
+        </div>
+    );
+}
+
+export default Effect;
+```
+**Everytime button is clicked the useEffect hook is called and it rerenders the component and sents a console log 
+that it has been triggered.**

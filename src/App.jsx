@@ -17,6 +17,7 @@ import MovieDB from './components/MovieDB.jsx'
 import Sharing from './components/Sharing.jsx'
 import Todo from './components/Todo.jsx'
 import ClipboardCopy from './components/ClipboardCopy.jsx'
+import Effect from './components/Effect.jsx'
 
 const App = () => {
 
@@ -46,6 +47,7 @@ const App = () => {
       <Sharing />
       <Todo />
       <ClipboardCopy />
+      <Effect />
       <Footer />
     </>
   )
