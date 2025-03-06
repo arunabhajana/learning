@@ -18,6 +18,9 @@ import Sharing from './components/Sharing.jsx'
 import Todo from './components/Todo.jsx'
 import ClipboardCopy from './components/ClipboardCopy.jsx'
 import Effect from './components/Effect.jsx'
+import Data from './components/Data.jsx'
+import BasicEffects from './components/BasicEffects.jsx'
+import Context from './components/Context.jsx'
 
 const App = () => {
 
@@ -48,6 +51,9 @@ const App = () => {
       <Todo />
       <ClipboardCopy />
       <Effect />
+      <Data />
+      <BasicEffects />
+      <Context/>
       <Footer />
     </>
   )

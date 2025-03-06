@@ -601,3 +601,268 @@ export default Effect;
 ```
 **Everytime button is clicked the useEffect hook is called and it rerenders the component and sents a console log 
 that it has been triggered.**
+
+2. Counter With Empty Dependency Array
+
+```js
+import { useState, useEffect } from "react";
+
+const Effect = () => {
+
+    const [value,setValue] = useState(0);
+
+    useEffect(() => {
+        console.log('Call useEffect');
+        document.title = `Increment ${value}`
+    },[]);
+
+    return (
+        <div>
+            <h2>{value}</h2>
+            <button onClick={() => setValue(value + 1)}>Click Me</button>
+        </div>
+    );
+}
+
+export default Effect;
+```
+**After Adding Empty Dependency Array The useEffect Hook only Renders it intially when the page is loaded**
+
+3. Counter With Dependency Array with value
+```js
+import { useState, useEffect } from "react";
+
+const Effect = () => {
+
+    const [value,setValue] = useState(0);
+
+    useEffect(() => {
+        console.log('Call useEffect');
+        document.title = `Increment ${value}`
+    },[value]); //Dependency Array
+
+    return (
+        <div>
+            <h2>{value}</h2>
+            <button onClick={() => setValue(value + 1)}>Click Me</button>
+        </div>
+    );
+}
+
+export default Effect;
+```
+**Everytime the value of the variable value changes the useEffect Hook Re-Renders the component**
+
+## Fetching Data Using useEffect()
+
+Fetching Data From JSON Placeholder API
+
+### Syntax
+
+```js
+useEffect(() => {
+  async function(){
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await response.json();
+  }
+});
+```
+
+### Example
+
+```js
+import { useState, useEffect } from "react";
+
+const Data = () => {
+
+    const[data,setData] = useState([]);
+
+    useEffect(() => {
+        async function getData() {
+            const response =  await fetch("https://jsonplaceholder.typicode.com/todos"); //API Link
+            const data = await response.json();
+            if(data && data.length) setData(data);
+
+        }
+
+        getData();
+    },[]);
+
+    return (
+        <div>
+            <ul>
+                {data.map(todo => (
+                    <li key={todo.id}>{todo.title}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+export default Data;
+```
+## Prop Drilling
+
+Prop drilling is a concept in React where data (props) is passed from a parent component to deeply nested child components through multiple intermediary components, even if some of those components do not need the data themselves. This can make the code harder to maintain and less efficient.
+
+![Component Hierarchy](image.png)
+
+### **Example :**
+- App.jsx
+```js
+const App = () => {
+  const name = "Alice";
+  return (
+    <div>
+  <ComponentA name={name} />
+    </div>
+    );
+}
+```
+- ComponentA.jsx
+```js
+const ComponentA = ({name}) => {
+      return (
+        <div>
+        <ComponentB name={name} />
+        </div>
+      )
+}
+```
+- ComponentB.jsx
+```js
+const ComponentB = ({name}) => {
+      return (
+        <div>
+        <ComponentC name={name} />
+        </div>
+      )
+}
+```
+- ComponentC.jsx
+```js
+const ComponentC = ({name}) => {
+      return (
+        <div>
+        <p> Name : {name} </p>
+        </div>
+      )
+}
+```
+## Context API
+
+Context API is a feature that allows you to manage and share state across your components tree
+without having to pass props down manually at every level.Its useful for scenarios where you
+need to share data or functions across many components, especially when they are deeply nested.
+
+### Syntax
+**Example** :
+```jsx
+import {createContext} from 'react'
+export const Data = createContext(); // Creating A Instance
+const App = () => {
+  const name = "Alice"; // Data To Be Provided
+  return (
+    <div>
+    <Data.Provider value = {name}> // Using Provider Property To Send Data To The Component
+    <ComponentA />
+    </Data.Provider>
+    </div>
+  )
+}
+```
+
+### Example
+
+- **Context.jsx**
+```jsx
+import { createContext } from "react";
+import ComponentA from "./ComponentA";
+
+export const Data = createContext(); // Create Context
+
+const Context = () => {
+    const name = "Alice"; // Data to pass
+
+    return (
+        <Data.Provider value={name}> {/* Providing data to children */}
+            <ComponentA />
+        </Data.Provider>
+    );
+}
+
+export default Context;
+```
+
+- **ComponentA.jsx**
+```jsx
+import { Data } from "./Context";
+
+const ComponentA = () => {
+  return (
+    <Data.Consumer>
+      {(name) => {
+        return <h1>Name: {name}</h1>;
+      }}
+    </Data.Consumer>
+  );
+};
+
+export default ComponentA;
+```
+- Provider Property is used to send data to other components.
+- Consumer Property is used to recieve data from other components.
+
+## Multiple Data (Using Multiple Instance)
+
+### Example
+
+- **Context.jsx**
+```jsx
+import { createContext } from "react";
+import ComponentA from "./ComponentA";
+
+export const Data = createContext(); // First Instance
+export const Data1 = createContext(); // Second Instance
+
+const Context = () => {
+    const name = "Alice"; // Data to pass
+    const age = 25; // Second Data
+
+    return (
+        <Data.Provider value={name}>
+            <Data1.Provider value={age}>
+            <ComponentA />
+            </Data1.Provider>
+        </Data.Provider>
+    );
+}
+
+export default Context;
+```
+
+- **ComponentA.jsx**
+```jsx
+import { Data } from "./Context";
+import { Data1 } from "./Context";
+
+const ComponentA = () => {
+  return (
+    <Data.Consumer>
+      {(name) => {
+        return (
+            <Data1.Consumer>
+                {(age) => {
+                    return <h1>Name : {name} and Age: {age}</h1>
+                }}
+            </Data1.Consumer>
+        )
+      }}
+    </Data.Consumer>
+  );
+};
+
+export default ComponentA;
+```
+
+- For Multiple Data U Nest The Provider Functions To Send Data & Nest Consumer To Recieve It.
