@@ -866,3 +866,55 @@ export default ComponentA;
 ```
 
 - For Multiple Data U Nest The Provider Functions To Send Data & Nest Consumer To Recieve It.
+
+## useContext() Hook
+
+useContext Hook allows us to access the context values provided by a Context object directly within
+a functional component.Context provides a way to pass data through the component tree without having
+to pass props down manually.
+
+### Syntax
+
+```jsx
+import {useContext} from 'react'
+
+const userName = useContext(Data);
+```
+
+### Example
+
+```jsx
+import { useContext } from "react";
+import { Data } from "./ContextHook.jsx";
+
+const ComponentB = () => {
+
+    const userName = useContext(Data);
+
+
+    return (
+        <div>
+            {userName}
+        </div>
+    );
+}
+
+export default ComponentB;
+```
+## useReducer() Hook
+
+useReducer Hook is similar to useState Hook but its designed for more complex state objects or state transitions that involve multiple sub-values.it allows you to manage state in a functional , immutable way.
+
+### Syntax
+
+```jsx
+const[state,dispatch] = useReducer(reducer,intialState)
+```
+
+- intialState : starting value for the state when component first renders
+- reducer : this function defines how the state should change based on current actions. it takes current state and an action as inputs, and returns a new state.
+- state : current state value, which you can use in your component.
+- dispatch : a function you can call to send actions to the reducer, which updates state.
+
+### Example
+
