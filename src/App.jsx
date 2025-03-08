@@ -22,6 +22,8 @@ import Data from './components/Data.jsx'
 import BasicEffects from './components/BasicEffects.jsx'
 import Context from './components/Context.jsx'
 import ContextHook from './components/ContextHook.jsx'
+import Reducer from './components/Reducer.jsx'
+import Ref from './components/Ref.jsx'
 
 const App = () => {
 
@@ -56,6 +58,8 @@ const App = () => {
       <BasicEffects />
       <Context/>
       <ContextHook />
+      <Reducer />
+      <Ref />
       <Footer />
     </>
   )
