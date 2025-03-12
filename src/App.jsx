@@ -24,6 +24,7 @@ import Context from './components/Context.jsx'
 import ContextHook from './components/ContextHook.jsx'
 import Reducer from './components/Reducer.jsx'
 import Ref from './components/Ref.jsx'
+import Custom from './components/Custom.jsx'
 
 const App = () => {
 
@@ -60,6 +61,7 @@ const App = () => {
       <ContextHook />
       <Reducer />
       <Ref />
+      <Custom />
       <Footer />
     </>
   )

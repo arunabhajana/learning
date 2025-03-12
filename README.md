@@ -990,3 +990,48 @@ const Ref = () => {
 
 export default Ref;
 ```
+## Custom Hooks
+
+Custom Hooks are JS Functions that start with the prefix use (eg: useFetch , useForm) and can call other hooks within them. they allow you to extract and reuse logic that involves states or side effects , making your component more readable and maintainable.
+
+### Example : 
+
+```jsx
+
+const useFetch = (url) => { // Custom Hook Named Fetch (useFetch)
+  
+  const[data,setData] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+    .then((res) => res.json())
+    .then((data) => setData(data));
+  },[url]);
+
+return [data];
+
+};
+```
+
+## useID Hook
+
+The useId hook in React is used to generate unique IDs for components;
+
+### Example
+
+```jsx
+import {useId} from 'react'
+
+const UniqueID = () => {
+
+  const id = useId();
+
+  return (
+    <div>
+    <label htmlFor={`${id}`}>Email</label>
+    <input type="email" htmlFor={`${id}`}/>
+    </div>
+  );
+}
+```
+
