@@ -1035,3 +1035,163 @@ const UniqueID = () => {
 }
 ```
 
+## Advanced React Concepts
+
+## React Router
+React Router is a popular library used for handling routing in React applications. It allows developers to create single-page applications (SPAs) with multiple views while maintaining seamless navigation without requiring full-page reloads.
+
+### Installation
+```bash
+npm install react-router-dom
+```
+
+### Setup
+
+```jsx
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+### Navigating Between Pages
+
+- **Using *Link* tag we can navigate to various pages**
+- **Using *to* property in Link Tag we can specify the url to route to.**
+
+```jsx
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+    </nav>
+  );
+}
+
+export default Navbar;
+```
+### Nested Routes
+
+```jsx
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import Profile from "./Profile";
+import Settings from "./Settings";
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="profile" element={<Profile />} />
+        <Route path="settings" element={<Settings />} />
+      </Route>
+    </Routes>
+  );
+}
+
+export default App;
+```
+**Accessin Nested Routes**
+- /dashboard/profile
+- /dashboard/settings
+
+### Function Outlet
+
+```jsx
+import { Outlet } from "react-router-dom";
+
+function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <Outlet /> {/* This will render Profile or Settings based on the URL */}
+    </div>
+  );
+}
+
+export default Dashboard;
+```
+
+- **Renders the matching child route of a parent route or nothing if no child route matches.**
+
+### Dynamic Routing
+
+Dynamic routing in React Router allows rendering components based on variable parameters in the URL. This is useful for scenarios like:
+
+- Viewing a user profile (/user/123)
+- Showing product details (/product/laptop)
+- Displaying blog posts (/post/react-router)
+
+**In dynamic routing, parts of the URL can act as parameters, making routes more flexible. These parameters are extracted from the URL and used inside components.**
+
+1. Creating Dynamic Route
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserProfile from "./UserProfile";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/user/:userId" element={<UserProfile />} /> //Dynamic Route
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+2. Extracting Parameters with useParams()
+
+React Router provides the useParams() hook to access URL parameters inside components.
+
+```jsx
+import { useParams } from "react-router-dom";
+
+function UserProfile() {
+  let { userId } = useParams();
+
+  return <h1>Profile of User {userId}</h1>;
+}
+
+export default UserProfile;
+```
+
+**Used To Extract The ID From the URL**
+
+### Programmable Navigation
+
+Use the useNavigate() hook to navigate dynamically.
+
+```jsx
+import { useNavigate } from "react-router-dom";
+
+function LoginPage() {
+  let navigate = useNavigate();
+
+  function handleLogin() {
+    // Perform login logic
+    navigate("/dashboard"); // Redirect user after login
+  }
+
+  return <button onClick={handleLogin}>Login</button>;
+}
+```
