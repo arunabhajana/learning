@@ -1195,3 +1195,136 @@ function LoginPage() {
   return <button onClick={handleLogin}>Login</button>;
 }
 ```
+
+## AXIOS 
+
+Axios is a promise-based HTTP client for making requests in JavaScript and React applications. It is commonly used for:
+
+- Fetching data from APIs
+- Sending data to a backend
+- Handling HTTP requests with better error handling
+
+| Feature                        | fetch()                                     | Axios                          |
+|--------------------------------|--------------------------------|-------------------------------|
+| **Automatic JSON Handling**    | ❌ No (Needs `response.json()`) | ✅ Yes                         |
+| **Error Handling**             | ❌ Only rejects on network failure | ✅ Rejects on HTTP errors       |
+| **Request Cancellation**       | ❌ No built-in support         | ✅ Yes (`CancelToken`)         |
+| **Timeout Support**            | ❌ Requires extra code         | ✅ Yes                         |
+| **Intercept Requests & Responses** | ❌ No                        | ✅ Yes                         |
+| **Supports Older Browsers**    | ❌ No                          | ✅ Yes                         |
+
+### Installation
+
+```bash
+npm install axios
+```
+**Import Axios**
+```jsx
+import axios from 'axios';
+```
+
+### Making GET Requests
+
+A GET request is used to fetch data from an API.
+
+```jsx
+import axios from 'axios'
+import { useEffect, useState } from 'react';
+
+const AxiosGet = () => {
+    const[data,setData] = useState(null);
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => {
+            setData(response.data);
+        });
+    },[]);
+    return (
+        <div>
+            <h1>{data?.title}</h1> // Using Optinal Chaining to safely accesses properties of an object without throwing an error
+        </div>
+    );
+}
+export default AxiosGet;
+```
+
+- What is Optional Chaining (?.)
+
+**Optional chaining (?.) is a JavaScript feature that safely accesses properties of an object without throwing an error if a property is null or undefined.**
+
+**Using Async/Await**
+
+```jsx
+async function fetchPost() {
+  try {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts/1');
+    console.log(response.data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
+fetchPost();
+```
+
+### Making POST Requests
+
+A POST request is used to send data to a server.
+
+```jsx
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
+const newPost = {
+    title: 'New Post',
+    body: 'New Post Using Axios On ReactJS',
+    userId: 1
+}
+
+const AxiosPost = () => {
+
+    const[data,setData] = useState(null);
+    useEffect(() => {
+        axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
+        .then(response => {
+            setData(response.data);
+        });
+    },[]);
+    return (
+        <div>
+            <h1>Posted Successfully !</h1>
+            <p>{data?.title}</p>
+        </div>
+    );
+}
+export default AxiosPost;
+```
+
+### Custom Headers (GET)
+
+- Headers are often required for authentication (e.g., API keys, tokens).
+
+```js
+axios.get('https://jsonplaceholder.typicode.com/posts', {
+  headers: {
+    'Authorization': 'Bearer my-secret-token',
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+
+### Query parameters
+
+- Used When Need Specific Data 
+- For Example In Website When Searched A Particular User using UserId
+```js
+axios.get('https://jsonplaceholder.typicode.com/posts', {
+  params: {
+    userId: 1
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
