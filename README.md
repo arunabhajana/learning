@@ -1328,3 +1328,110 @@ axios.get('https://jsonplaceholder.typicode.com/posts', {
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
 ```
+
+## Tanstack Query (React Query)
+
+Traditional state management tools like Redux are not optimized for handling server-side data. TanStack Query provides an efficient way to:
+✅ Fetch and cache server data
+✅ Automatically update data in the background
+✅ Synchronize data across multiple components
+✅ Improve performance with request deduplication
+✅ Reduce unnecessary re-renders
+
+### Installation
+
+```bash
+npm install @tanstack/react-query
+```
+
+### Setup
+
+Before using TanStack Query, wrap your React app with the QueryClientProvider to provide the query client to the entire application.
+
+```jsx
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <MyComponent />
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+```
+
+### Fetching Data using useQuery()
+
+The useQuery hook is used to fetch data from an API.
+
+```jsx
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+const fetchPosts = async () => {
+  const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  return response.data;
+};
+
+const Posts = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["posts"], // Unique key for caching
+    queryFn: fetchPosts,
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ul>
+      {data.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default Posts;
+```
+
+### Mutating Data using useMutation()
+
+To create, update, or delete data, use useMutation.
+
+```jsx
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
+const createPost = async (newPost) => {
+  const response = await axios.post("https://jsonplaceholder.typicode.com/posts", newPost);
+  return response.data;
+};
+
+const AddPost = () => {
+  const queryClient = useQueryClient(); // Access cached queries
+  const mutation = useMutation({
+    mutationFn: createPost,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["posts"]); // Refresh posts list
+    },
+  });
+
+  const handleAddPost = () => {
+    mutation.mutate({ title: "New Post", body: "This is a new post" });
+  };
+
+  return (
+    <div>
+      <button onClick={handleAddPost}>Add Post</button>
+      {mutation.isLoading && <p>Adding post...</p>}
+      {mutation.error && <p>Error: {mutation.error.message}</p>}
+    </div>
+  );
+};
+
+export default AddPost;
+```
