@@ -28,8 +28,8 @@ import Custom from './components/Custom.jsx'
 
 const App = () => {
 
-  const Header = () => <div><h1>Header</h1></div>;
-  const Footer = () => <div><h1>Footer</h1></div>;
+  const Header = () => <div><h1>This is the Header</h1></div>;
+  const Footer = () => <div><h1>This is The Footer</h1></div>;
   return (
     <>
       <Header />
